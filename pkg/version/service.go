@@ -1,10 +1,15 @@
 package version
 
-import "fmt"
+import (
+	"github.com/ningenme/neovenetia/pkg/common"
+)
 
 // if you update version, please update CHANGELOG too.
-var version string = "v0.2.0"
+func getVersion() string {
+	return "v0.2.0"
+}
 
-func Main() {
-	fmt.Println("Neovenetia " + version)
+func Exec() {
+	var message string = "Neovenetia " + getVersion()
+	common.PrintOne(message)
 }
