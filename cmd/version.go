@@ -12,7 +12,7 @@ var versionCmd = &cobra.Command{
 	Short: "Show the current Neovenetia version",
 	Long: `Show the current Neovenetia version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		version.Main()
+		version.Exec()
 	},
 }
 

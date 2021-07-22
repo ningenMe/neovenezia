@@ -17,7 +17,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		versionFlag, _ := cmd.Flags().GetBool("version")
 		if versionFlag {
-			version.Main()
+			version.Exec()
 		}
 	},
 }
