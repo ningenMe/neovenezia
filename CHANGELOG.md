@@ -7,3 +7,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Changed
 
 ### 0.1.0
+- create base setup
