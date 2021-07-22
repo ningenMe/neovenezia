@@ -1,4 +1,4 @@
-name: ci
+name: ci-main
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build-and-test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
