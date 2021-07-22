@@ -1,9 +1,9 @@
 # Neovenetia
-Neovenetia is a cli application that manages package structure
+Neovenetia is a cli application that manages directory structures (package structure)
 
 ## Table of Contents
-- [Example](##Example)
 - [Install](##Install)
+- [Usage](##Usage)
 - [License](##License)
 
 ## Example
