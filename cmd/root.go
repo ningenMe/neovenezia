@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/ningenme/neovenezia/pkg/version"
 	"os"
+
+	"github.com/ningenme/neovenezia/pkg/version"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -30,6 +31,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(setupCmd)
 	rootCmd.Flags().BoolP("version", "v", false, "An alias for the `version` subcommand.")
 }
 
