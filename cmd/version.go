@@ -6,7 +6,6 @@ import (
 	"github.com/ningenme/neovenezia/pkg/version"
 )
 
-// versionCmd represents the version command
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Show the current Neovenezia version",
@@ -14,8 +13,4 @@ var versionCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		version.Exec()
 	},
-}
-
-func init() {
-	rootCmd.AddCommand(versionCmd)
 }
