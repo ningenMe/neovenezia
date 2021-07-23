@@ -7,13 +7,13 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/ningenme/neovenetia/pkg/version"
+	"github.com/ningenme/neovenezia/pkg/version"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "neovenetia",
-	Short: "Neovenetia is a validator of package config",
-	Long: `Neovenetia is a cli application that manages package config, directory structures`,
+	Use:   "neovenezia",
+	Short: "Neovenezia is a validator of package config",
+	Long: `Neovenezia is a cli application that manages package config, directory structures`,
 	Run: func(cmd *cobra.Command, args []string) {
 		versionFlag, _ := cmd.Flags().GetBool("version")
 		if versionFlag {
