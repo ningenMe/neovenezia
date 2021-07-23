@@ -5,15 +5,13 @@
 
 Neovenezia is a cli application that manages directory structures, package config
 
-## Table of Contents
-- [Example](##Example)
-- [Install](##Install)
-- [Usage](##Usage)
-- [License](##License)
-
 ## Example
 
 ## Install
+
+```
+go get -u github.com/ningenme/neovenezia
+```
 
 ## Usage
 
