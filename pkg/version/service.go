@@ -6,7 +6,7 @@ import (
 
 // if you update version, please update CHANGELOG too.
 func getVersion() string {
-	return "v0.2.0"
+	return "v0.3.0"
 }
 
 func Exec() {
