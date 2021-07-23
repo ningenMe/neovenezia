@@ -1,4 +1,4 @@
-module github.com/ningenme/neovenetia
+module github.com/ningenme/neovenezia
 
 go 1.16
 

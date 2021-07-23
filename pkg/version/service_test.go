@@ -15,5 +15,5 @@ func TestGetVersion(t *testing.T) {
 
 func ExampleExec() {
 	Exec()
-	// Output: Neovenetia v0.2.0
+	// Output: Neovenezia v0.2.0
 }
