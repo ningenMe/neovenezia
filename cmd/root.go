@@ -2,12 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/ningenme/neovenezia/pkg/version"
 	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-
-	"github.com/ningenme/neovenezia/pkg/version"
 )
 
 var rootCmd = &cobra.Command{
@@ -18,7 +17,9 @@ var rootCmd = &cobra.Command{
 		versionFlag, _ := cmd.Flags().GetBool("version")
 		if versionFlag {
 			version.Exec()
+			return
 		}
+		cobra.CheckErr(cmd.Help())
 	},
 }
 
@@ -28,6 +29,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+	rootCmd.AddCommand(versionCmd)
 	rootCmd.Flags().BoolP("version", "v", false, "An alias for the `version` subcommand.")
 }
 
