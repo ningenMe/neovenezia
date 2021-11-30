@@ -31,6 +31,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(initCmd)
+	rootCmd.AddCommand(validateCmd)
 	rootCmd.Flags().BoolP("version", "v", false, "An alias for the `version` subcommand.")
 }
 
