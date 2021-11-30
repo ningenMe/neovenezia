@@ -1,4 +1,4 @@
-package version
+package service
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -14,6 +14,6 @@ func TestGetVersion(t *testing.T) {
 }
 
 func ExampleExec() {
-	Exec()
+	ExecVersion()
 	// Output: Neovenezia v0.3.0
 }
