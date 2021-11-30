@@ -1,4 +1,4 @@
-package setup
+package service
 
 import (
 	"fmt"
@@ -8,10 +8,10 @@ import (
 
 var neoveneziaYamlName string = "neovenezia.yaml"
 
-func Exec() {
+func ExecInit() {
 
 	if common.FileExists(getNeoveneziaYamlFullPath()) {
-		common.PrintOne(getNeoveneziaYamlFullPath() + " exists")
+		common.PrintOne(getNeoveneziaYamlFullPath() + " already exists")
 		return
 	}
 

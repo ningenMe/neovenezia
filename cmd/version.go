@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/ningenme/neovenezia/pkg/version"
+	"github.com/ningenme/neovenezia/pkg/service"
 )
 
 var versionCmd = &cobra.Command{
@@ -11,6 +11,6 @@ var versionCmd = &cobra.Command{
 	Short: "Show the current Neovenezia version",
 	Long: `Show the current Neovenezia version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		version.Exec()
+		service.ExecVersion()
 	},
 }

@@ -1,4 +1,4 @@
-package version
+package service
 
 import (
 	"github.com/ningenme/neovenezia/pkg/common"
@@ -9,7 +9,7 @@ func getVersion() string {
 	return "v0.3.0"
 }
 
-func Exec() {
+func ExecVersion() {
 	var message string = "Neovenezia " + getVersion()
 	common.PrintOne(message)
 }
