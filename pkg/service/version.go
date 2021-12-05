@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/ningenme/neovenezia/pkg/common"
+	"github.com/ningenme/neovenezia/pkg/repository"
 )
 
 // if you update version, please update CHANGELOG too.
@@ -11,5 +11,5 @@ func getVersion() string {
 
 func ExecVersion() {
 	var message string = "Neovenezia " + getVersion()
-	common.PrintOne(message)
+	repository.PrintOne(message)
 }

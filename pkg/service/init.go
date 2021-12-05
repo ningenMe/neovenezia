@@ -2,7 +2,7 @@ package service
 
 import (
 	"fmt"
-	"github.com/ningenme/neovenezia/pkg/common"
+	"github.com/ningenme/neovenezia/pkg/repository"
 	"os"
 )
 
@@ -10,8 +10,8 @@ var neoveneziaYamlName string = "neovenezia.yaml"
 
 func ExecInit() {
 
-	if common.FileExists(getNeoveneziaYamlFullPath()) {
-		common.PrintOne(getNeoveneziaYamlFullPath() + " already exists")
+	if repository.FileExists(getNeoveneziaYamlFullPath()) {
+		repository.PrintOne(getNeoveneziaYamlFullPath() + " already exists")
 		return
 	}
 
@@ -30,5 +30,5 @@ func createNeoveneziaYaml(configFileFullPath string) {
 		return
 	}
 	defer fp.Close()
-	common.PrintOne("Initialized empty " + configFileFullPath)
+	repository.PrintOne("Initialized empty " + configFileFullPath)
 }

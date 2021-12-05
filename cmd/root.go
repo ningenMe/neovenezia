@@ -12,7 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "neovenezia",
 	Short: "Neovenezia is a validator of package config",
-	Long: `Neovenezia is a cli application that manages package config, directory structures`,
+	Long:  `Neovenezia is a cli application that manages package config, directory structures`,
 	Run: func(cmd *cobra.Command, args []string) {
 		versionFlag, _ := cmd.Flags().GetBool("version")
 		if versionFlag {
@@ -31,6 +31,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(initCmd)
+	rootCmd.AddCommand(validateCmd)
 	rootCmd.Flags().BoolP("version", "v", false, "An alias for the `version` subcommand.")
 }
 

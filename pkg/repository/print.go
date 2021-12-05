@@ -1,4 +1,4 @@
-package common
+package repository
 
 import "fmt"
 
@@ -8,7 +8,6 @@ func Print(messages []string) {
 	}
 }
 
-func PrintOne(message string)  {
+func PrintOne(message string) {
 	Print([]string{message})
 }
-
