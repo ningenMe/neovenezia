@@ -1,6 +1,7 @@
 package service
 
 const defaultDirectory = "."
+
 func ExecValidate(args []string) {
 	//var directory = getDirectory(args)
 	//var paths = repository.GetFiles(directory)
@@ -15,7 +16,7 @@ func getDirectory(args []string) string {
 	return defaultDirectory
 }
 
-func getPaths(paths []string, directory string) []string  {
+func getPaths(paths []string, directory string) []string {
 	if directory == defaultDirectory {
 		return paths
 	}

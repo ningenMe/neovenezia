@@ -1,7 +1,7 @@
 package repository
 
 func ExamplePrint() {
-	Print([]string{"akari","aika"})
+	Print([]string{"akari", "aika"})
 	// Output:
 	//akari
 	//aika

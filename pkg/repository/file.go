@@ -1,50 +1,50 @@
 package repository
 
 import (
-    "github.com/ningenme/neovenezia/pkg/domain"
-    "io/ioutil"
-    "os"
-    "path/filepath"
-    "regexp"
+	"github.com/ningenme/neovenezia/pkg/domain"
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"regexp"
 )
 
 func FileExists(fileName string) bool {
-    _, err := os.Stat(fileName)
-    return !os.IsNotExist(err)
+	_, err := os.Stat(fileName)
+	return !os.IsNotExist(err)
 }
 
 func GetFiles(directory string) []string {
-    files, err := ioutil.ReadDir(directory)
-    if err != nil {
-        panic(err)
-    }
+	files, err := ioutil.ReadDir(directory)
+	if err != nil {
+		panic(err)
+	}
 
-    var paths []string
-    for _, file := range files {
-        fileName := file.Name()
+	var paths []string
+	for _, file := range files {
+		fileName := file.Name()
 
-        if domain.IsInclude(getExcludeDirectoryName(), fileName) {
-            continue
-        }
+		if domain.IsInclude(getExcludeDirectoryName(), fileName) {
+			continue
+		}
 
-        if isFirstDot(fileName) {
-            continue
-        }
+		if isFirstDot(fileName) {
+			continue
+		}
 
-        var fileFullPath = filepath.Join(directory, fileName)
-        if file.IsDir() {
-            paths = append(paths, GetFiles(fileFullPath)...)
-            continue
-        }
-        paths = append(paths, fileFullPath)
-    }
-    return paths
+		var fileFullPath = filepath.Join(directory, fileName)
+		if file.IsDir() {
+			paths = append(paths, GetFiles(fileFullPath)...)
+			continue
+		}
+		paths = append(paths, fileFullPath)
+	}
+	return paths
 }
 
 func getExcludeDirectoryName() []string {
-    return []string{".git", ".idea"}
+	return []string{".git", ".idea"}
 }
 
 func isFirstDot(fileName string) bool {
-    return regexp.MustCompile(`^\..*`).Match([]byte(fileName))
+	return regexp.MustCompile(`^\..*`).Match([]byte(fileName))
 }
