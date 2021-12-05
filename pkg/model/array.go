@@ -1,4 +1,4 @@
-package domain
+package model
 
 func IsInclude(targetStrings []string, target string) bool {
 	for _, element := range targetStrings {
