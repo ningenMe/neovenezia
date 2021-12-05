@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/ningenme/neovenezia/pkg/domain"
+	"github.com/ningenme/neovenezia/pkg/model"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -23,7 +23,7 @@ func GetFiles(directory string) []string {
 	for _, file := range files {
 		fileName := file.Name()
 
-		if domain.IsInclude(getExcludeDirectoryName(), fileName) {
+		if model.IsInclude(getExcludeDirectoryName(), fileName) {
 			continue
 		}
 
