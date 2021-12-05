@@ -10,6 +10,6 @@ var validateCmd = &cobra.Command{
 	Short: "Validate package structure by neovenezia.yaml",
 	Long: "Validate package structure by neovenezia.yaml",
 	Run: func(cmd *cobra.Command, args []string) {
-		service.ExecValidate()
+		service.ExecValidate(args)
 	},
 }

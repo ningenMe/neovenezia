@@ -1,4 +1,4 @@
-package common
+package repository
 
 func ExamplePrint() {
 	Print([]string{"akari","aika"})
