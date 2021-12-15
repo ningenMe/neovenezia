@@ -1,61 +1,48 @@
 package service
 
 import (
-	"fmt"
 	"github.com/ningenme/neovenezia/pkg/model"
 	"io/ioutil"
 	"path/filepath"
 )
 
-func ExecTree() {
-	//repository.Print(GetFiles("./"))
-	fileNode := GetFileNode("./")
-	fmt.Println(fileNode.FileName)
-	fmt.Println(fileNode.Files)
-	fmt.Println(fileNode.GetDirectories())
+func ExecTree(args []string) {
+	fileNode := GetFileNode(getCurrentPath(args), "./", 0)
 	fileNode.Print()
 }
 
-func GetFiles(directory string) []string {
-	files, err := ioutil.ReadDir(directory)
-
-	if err != nil {
-		panic(err)
+func getCurrentPath(args []string) string {
+	if len(args) > 0 {
+		return args[0]
 	}
-
-	var paths []string
-	for _, file := range files {
-		fileName := file.Name()
-
-		var fileFullPath = filepath.Join(directory, fileName)
-		if file.IsDir() {
-			paths = append(paths, GetFiles(fileFullPath)...)
-			continue
-		}
-		paths = append(paths, fileFullPath)
-	}
-	return paths
+	return "./"
 }
 
-func GetFileNode(directory string) model.FileNode {
-	files, err := ioutil.ReadDir(directory)
+func GetFileNode(path string, directoryName string, depth int) model.FileNode {
+
+	files, err := ioutil.ReadDir(path)
 
 	if err != nil {
 		panic(err)
 	}
 
-	fileNode := model.FileNode{Directory: directory, FileName: directory, Files: []string{}, FileNodes: []model.FileNode{}}
-	fileNode.Directory = directory
+	fileNode := model.FileNode{
+		Path:          path,
+		DirectoryName: directoryName,
+		Files:         []string{},
+		FileNodes:     []model.FileNode{},
+		Depth:         depth,
+	}
 
 	for _, file := range files {
 		fileName := file.Name()
 
-		var fileFullPath = filepath.Join(directory, fileName)
+		nextPath := filepath.Join(path, fileName)
 		if file.IsDir() {
-			childFileNode := GetFileNode(fileFullPath)
+			childFileNode := GetFileNode(nextPath, fileName, depth+1)
 			fileNode.FileNodes = append(fileNode.FileNodes, childFileNode)
 		} else {
-			fileNode.Files = append(fileNode.Files, fileFullPath)
+			fileNode.Files = append(fileNode.Files, fileName)
 		}
 	}
 	return fileNode

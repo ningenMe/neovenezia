@@ -10,6 +10,6 @@ var treeCmd = &cobra.Command{
 	Short: "Show file and directory structure as a tree",
 	Long:  "Show file and directory structure as a tree",
 	Run: func(cmd *cobra.Command, args []string) {
-		service.ExecTree()
+		service.ExecTree(args)
 	},
 }
