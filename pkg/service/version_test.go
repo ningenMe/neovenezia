@@ -8,7 +8,7 @@ import (
 func TestGetVersion(t *testing.T) {
 	t.Run("", func(t *testing.T) {
 		actual := getVersion()
-		expect := "v0.3.0"
+		expect := "v0.4.0"
 		assert.Equal(t, actual, expect)
 	})
 }
