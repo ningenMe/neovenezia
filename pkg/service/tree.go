@@ -2,13 +2,14 @@ package service
 
 import (
 	"github.com/ningenme/neovenezia/pkg/model"
+	"github.com/ningenme/neovenezia/pkg/repository"
 	"io/ioutil"
 	"path/filepath"
 )
 
 func ExecTree(args []string) {
-	fileNode := GetFileNode(getCurrentPath(args), "./", 0)
-	fileNode.Print()
+	fileNode := GetFileNode(getCurrentPath(args), "./")
+	repository.Print(fileNode.GetTreeStrings())
 }
 
 func getCurrentPath(args []string) string {
@@ -18,7 +19,7 @@ func getCurrentPath(args []string) string {
 	return "./"
 }
 
-func GetFileNode(path string, directoryName string, depth int) model.FileNode {
+func GetFileNode(path string, directoryName string) model.FileNode {
 
 	files, err := ioutil.ReadDir(path)
 
@@ -31,7 +32,6 @@ func GetFileNode(path string, directoryName string, depth int) model.FileNode {
 		DirectoryName: directoryName,
 		Files:         []string{},
 		FileNodes:     []model.FileNode{},
-		Depth:         depth,
 	}
 
 	for _, file := range files {
@@ -39,7 +39,7 @@ func GetFileNode(path string, directoryName string, depth int) model.FileNode {
 
 		nextPath := filepath.Join(path, fileName)
 		if file.IsDir() {
-			childFileNode := GetFileNode(nextPath, fileName, depth+1)
+			childFileNode := GetFileNode(nextPath, fileName)
 			fileNode.FileNodes = append(fileNode.FileNodes, childFileNode)
 		} else {
 			fileNode.Files = append(fileNode.Files, fileName)

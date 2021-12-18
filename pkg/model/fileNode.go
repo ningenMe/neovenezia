@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -10,7 +9,6 @@ type FileNode struct {
 	DirectoryName string
 	Files         []string
 	FileNodes     []FileNode
-	Depth         int
 }
 
 const (
@@ -28,43 +26,52 @@ func (fileNode *FileNode) GetDirectories() []string {
 	return directories
 }
 
-func getExcludeDirectoryName() []string {
-	return []string{".git", ".idea"}
+func (fileNode *FileNode) GetTreeStrings() []string {
+	treeStrings := []string{}
+	treeStrings = append(treeStrings, fileNode.DirectoryName)
+	fileNode.addTreeString(&treeStrings, "")
+	return treeStrings
 }
 
-func (fileNode *FileNode) Print() {
-	directoryName := fileNode.DirectoryName
+func (fileNode *FileNode) addTreeString(treeStringsPointer *[]string, prefix string) {
 
-	fmt.Println(getDirectoryName(fileNode.Depth, fileNode.Path, directoryName))
-
-	if IsInclude(getExcludeDirectoryName(), directoryName) {
-		return
-	}
-
-	length := len(fileNode.Files)
+	fileLength := len(fileNode.Files)
+	directoryLength := len(fileNode.FileNodes)
+	existDirectory := directoryLength > 0
 	for index, file := range fileNode.Files {
-		prefix := getFilePrefix(fileNode.Depth, index, length)
-		fmt.Println(prefix, file)
+		*treeStringsPointer = append(*treeStringsPointer, prefix+getFileBranch(index, fileLength, existDirectory)+file)
 	}
-	for _, childrenFileNode := range fileNode.FileNodes {
-		childrenFileNode.Print()
+	for index, childrenFileNode := range fileNode.FileNodes {
+		*treeStringsPointer = append(*treeStringsPointer, prefix+getDirectoryBranch(index, directoryLength)+childrenFileNode.DirectoryName)
+
+		if strings.HasPrefix(childrenFileNode.DirectoryName, ".") {
+			continue
+		}
+
+		childrenFileNode.addTreeString(treeStringsPointer, prefix+getAdditionalPrefix(index, directoryLength))
 	}
 }
 
-func getDirectoryName(depth int, path string, directory string) string {
-	if depth == 0 {
-		return path
+func getFileBranch(index int, length int, existDirectory bool) string {
+	if existDirectory {
+		return normalBranch
 	}
-	return strings.Repeat(straight, depth-1) + getBranch(0, 2) + " " + directory
+	if index+1 != length {
+		return normalBranch
+	}
+	return lastBranch
 }
 
-func getFilePrefix(depth int, index int, length int) string {
-	return strings.Repeat(straight, depth) + getBranch(index, length)
+func getDirectoryBranch(index int, length int) string {
+	if index+1 != length {
+		return normalBranch
+	}
+	return lastBranch
 }
 
-func getBranch(index int, length int) string {
-	if index+1 == length {
-		return lastBranch
+func getAdditionalPrefix(index int, length int) string {
+	if index+1 != length {
+		return straight
 	}
-	return normalBranch
+	return blank
 }
