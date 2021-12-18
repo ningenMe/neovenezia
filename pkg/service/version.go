@@ -6,10 +6,10 @@ import (
 
 // if you update version, please update CHANGELOG too.
 func getVersion() string {
-	return "v0.3.0"
+	return "v0.4.0"
 }
 
 func ExecVersion() {
-	var message string = "Neovenezia " + getVersion()
+	message := "Neovenezia " + getVersion()
 	repository.PrintOne(message)
 }
